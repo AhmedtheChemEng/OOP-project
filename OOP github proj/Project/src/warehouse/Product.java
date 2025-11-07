@@ -2,7 +2,7 @@ package warehouse;
 
 public class Product {
 	private double price;
-	private int number;
+	private String Ali;
 	
     public Product(int price){
         this.price=price;
