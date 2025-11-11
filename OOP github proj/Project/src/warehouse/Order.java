@@ -1,7 +1,7 @@
 package warehouse;
 import java.time.LocalDate;
 
-public class Shipment {
+public class Order {
 	private String id;
 	private LocalDate date;
 	private double subtotal;
@@ -12,8 +12,4 @@ public class Shipment {
 	private OrderItem items;
 	private Discount appliedDiscount;
 	private Payment payment;
-	
-	
-	
-
 }
