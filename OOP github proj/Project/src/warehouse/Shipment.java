@@ -2,16 +2,19 @@ package warehouse;
 import java.time.LocalDate;
 
 public class Shipment {
-	private String id;
-	private LocalDate date;
-	private double subtotal;
-	private double discountAmount;
-	private double shippingFee;
-	private double total;
+	private String Orderid;
+	private double totalWeightKg;
 	private Customer customer;
-	private OrderItem items;
-	private Discount appliedDiscount;
-	private Payment payment;
+	private Address address;
+	private ShipmentStatus status;
+	
+	public String basicInfo() {
+		return "";
+	}
+	
+	
+	
+	
 	
 	
 	

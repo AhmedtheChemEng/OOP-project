@@ -1,6 +1,6 @@
 package warehouse;
 
-public class Adress {
+public class Address {
     private String street, city, country;
 
     public String getStreet() {
