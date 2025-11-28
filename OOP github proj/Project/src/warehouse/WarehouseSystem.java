@@ -8,8 +8,9 @@ public class WarehouseSystem {
 	private ArrayList<Customer> customers = new ArrayList<>();
 	private ArrayList<Product> products = new ArrayList<>();
 	private ArrayList<Discount> discounts = new ArrayList<>();
-//	private ArrayList<Order> orders = new ArrayList<>();
+	private ArrayList<Order> orders = new ArrayList<>();
 	private ArrayList<Shipment> shipments = new ArrayList<>();
+	private RateTable rateTable = new RateTable();
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -62,11 +63,89 @@ public class WarehouseSystem {
 			}
 		}
 		System.out.println("No Applicable Discounts.");
-		return null;}}
-	
+		return null;
+	}
 	
 	// ------------------------- Discounts end ------------------------------------
 	
+	// ------------------------- Customer ------------------------------------
 	
+	public void addCustomer(Customer newCustomer) {
+		if (!customers.contains(newCustomer)){
+			customers.add(newCustomer);}
+	}
+
+	public ArrayList<Customer> getCustomers() {
+		return customers;
+	}
 	
+	public Customer findCustomerById(String id) {
+		for (Customer c:customers) {
+			if (c.getId().equals(id)) {
+				return c;
+			}
+		}
+		return null;
+	}
 	
+	// ------------------------- Customer end ------------------------------------
+	
+	// ------------------------- Product ------------------------------------
+	
+	public void addProduct(Product newProduct) {
+		if (!products.contains(newProduct)){
+			products.add(newProduct);}
+	}
+
+	public ArrayList<Product> getProduct() {
+		return products;
+	}
+	
+	public Product findProductById(String id) {
+		for (Product p:products) {
+			if (p.getId().equals(id)) {
+				return p;
+			}
+		}
+		return null;
+	}
+	
+	// ------------------------- Product end ------------------------------------
+	
+	// ------------------------- Order ------------------------------------
+	
+	public void addOrder(Order order) {
+		if (!orders.contains(order)){
+			orders.add(order);}
+	}
+
+
+	public ArrayList<Order> getOrders() {
+		return orders;
+	}
+	
+	// ------------------------- Order end ------------------------------------
+	
+	// ------------------------- Shipment ------------------------------------
+	
+	public void addShipment(Shipment Shipment) {
+		if (!shipments.contains(Shipment)){
+			shipments.add(Shipment);}
+	}
+
+	public ArrayList<Shipment> getShipments() {
+		return shipments;
+	}
+
+	
+	// ------------------------- Shipment end ------------------------------------
+	
+	// ------------------------- RateTable ------------------------------------
+	
+	public RateTable getRateTable() {
+		return rateTable;
+	}
+	
+	// ------------------------- RateTable ------------------------------------
+
+}
