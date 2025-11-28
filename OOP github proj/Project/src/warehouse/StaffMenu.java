@@ -40,7 +40,7 @@ public class StaffMenu {
 		String id = sc.nextLine();
 		System.out.print("Customer Name: > ");
 		String name = sc.nextLine();
-		if (id.trim().isEmpty() || id.trim().isEmpty()) {
+		if (id.trim().isEmpty() || name.trim().isEmpty()) {
 			System.out.println("Error: ID and Name cannot be empty.");
 		} else {
 			system.addCustomer(new Customer(name, id));
@@ -53,17 +53,17 @@ public class StaffMenu {
 		ArrayList<Discount> discounts = system.getDiscounts();
 		for(int i=0; i<discounts.size();i++){
 			Discount d = discounts.get(i);
-			System.out.printf("%d) %s | Active: %b%n", i, d.getDetails(), d.isActive());
+			System.out.printf("%d) %s" , i, d);
 		}
 		System.out.print("Enter index to toggle (or blank to skip): > ");
 	    String idxStr = sc.nextLine();
-	    if (!idxStr.isEmpty()) {
+	    if (!idxStr.isEmpty()) 	{
 	        try {
 	            int idx = Integer.parseInt(idxStr);
 	            if (idx >= 0 && idx < discounts.size()) {
 	                Discount d = discounts.get(idx);
 	                boolean newState = !d.isActive();
-	                system.setDiscountActive(d, newState);
+	                system.setDiscountActive(d);
 	                System.out.printf("Now Active: %b%n", d.isActive());
 	                if (newState) {
 	                    System.out.println("(Any overlapping active discounts were set to Inactive.)");
@@ -103,11 +103,6 @@ public class StaffMenu {
 	            System.out.print("End date (YYYY-MM-DD): > ");
 	            try {
 	                LocalDate d = LocalDate.parse(sc.nextLine());
-	                if (d.isBefore(start)) {
-	                    System.out.println("Error: End date cannot be before start date.");
-	                } else {
-	                    end = d;
-	                }
 	            } catch (DateTimeParseException e) {
 	                System.out.println("Error: Invalid date format. Use YYYY-MM-DD.");
 	            }
@@ -155,7 +150,62 @@ public class StaffMenu {
 	
 
 	public static void addProduct(Scanner sc, WarehouseSystem system) {
-		System.out.println("aP");
+		String cat = "";
+        while (true) {
+            System.out.println("Category: 1) Book 2) Electronic 3) Grocery");
+            System.out.print("> ");
+            cat = sc.nextLine();
+            if (cat.equals("1") || cat.equals("2") || cat.equals("3")) break;
+            System.out.println("Error: Invalid category.");
+        }
+
+        System.out.print("ID: > ");
+        String id = sc.nextLine();
+        System.out.print("Name: > ");
+        String name = sc.nextLine();
+
+        double price = -1;
+        while (price < 0) {
+            System.out.print("Price (QAR): > ");
+            try {
+                price = Double.parseDouble(sc.nextLine());
+                if (price < 0) System.out.println("Error: Price cannot be negative.");
+            } catch (NumberFormatException e) {
+                System.out.println("Error: Invalid number.");
+            }
+        }
+
+        double weight = -1;
+        while (weight <= 0) {
+            System.out.print("Weight (kg): > ");
+            try {
+                weight = Double.parseDouble(sc.nextLine());
+                if (weight <= 0) System.out.println("Error: Weight must be positive.");
+            } catch (NumberFormatException e) {
+                System.out.println("Error: Invalid number.");
+            }
+        }
+
+        int stock = -1;
+        while (stock < 0) {
+            System.out.print("Stock Qty: > ");
+            try {
+                stock = Integer.parseInt(sc.nextLine());
+                if (stock < 0) System.out.println("Error: Stock cannot be negative.");
+            } catch (NumberFormatException e) {
+                System.out.println("Error: Invalid integer.");
+            }
+        }
+
+        Product p = null;
+        if (cat.equals("1")) p = new BookProduct(id, name, price, weight, stock);
+        else if (cat.equals("2")) p = new ElectronicProduct(id, name, price, weight, stock);
+        else if (cat.equals("3")) p = new GroceryProduct(id, name, price, weight, stock);
+
+        if (p != null) {
+            system.addProduct(p);
+            System.out.printf("Product added: %s (%s)%n", name, p.getCategory());
+        }
 	}
 
 	public static void updateShipment(Scanner sc, WarehouseSystem system) {}

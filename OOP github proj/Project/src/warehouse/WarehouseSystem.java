@@ -44,7 +44,7 @@ public class WarehouseSystem {
 		
 	}
 	
-	public void toggleDiscountActive(Discount target) { // toggles discount activity
+	public void setDiscountActive(Discount target) { // toggles discount activity
 		if (target.isActive()){ // if active toggle off
 			target.setActive(false);
 		}
@@ -69,6 +69,12 @@ public class WarehouseSystem {
 	
 	
 	
+	public void addCustomer(Customer newCustomer) {
+		
+	}
 	
+	public void addProduct(Product P) {
+		
+	}
 
 }
