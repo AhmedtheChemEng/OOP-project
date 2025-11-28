@@ -12,7 +12,7 @@ public class StaffMenu {
 	 */
 	public static void run(Scanner sc, WarehouseSystem system) {
 		int choice;
-		final String menu = "--- Staff Menu ---\n" + "1) Add Customer (ID + Name)\n" + "2) List/Toggle Discounts\n"
+		final String menu = "\n--- Staff Menu ---\n" + "1) Add Customer (ID + Name)\n" + "2) List/Toggle Discounts\n"
 				+ "3) Create Discount\n" + "4) Add Product\n" + "5) Update Shipment Status\n" + "6) Reports (~15)"
 				+ "0) Back";
 
@@ -25,7 +25,7 @@ public class StaffMenu {
 			case 3 -> createDiscount(sc, system);
 			case 4 -> addProduct(sc, system);
 			case 5 -> updateShipment(sc, system);
-			case 6 -> ReportService.runAllReports(system);
+			//case 6 -> ReportService.runAllReports(system);
 			// case 0 ->
 			default -> System.out.println("Invalid Choice!");
 			}
@@ -207,15 +207,28 @@ public class StaffMenu {
             System.out.printf("Product added: %s (%s)%n", name, p.getCategory());
         }
 	}
-
-	public static void updateShipment(Scanner sc, WarehouseSystem system) {}
+//This method shows all the instances of shipment in the arrayList shipments, then updates the shipment status based on the statusChoice of the user
+	public static void updateShipment(Scanner sc, WarehouseSystem system) {
+		ArrayList<Shipment> shipments=system.getShipments();
+		for(int i=0;i<shipments.size();i++) {
+			System.out.printf("%d) %s%n",i,shipments.get(i).basicInfo());
+			}
+		System.out.println("Choose shipment index: >");
+		int index= sc.nextInt();
+		Shipment s= shipments.get(index);
+		System.out.println(
+			    "Status:\n" +
+			    "0) CREATED\n" +
+			    "1) PACKED\n" +
+			    "2) IN_TRANSIT\n" +
+			    "3) OUT_FOR_DELIVERY\n" +
+			    "4) DELIVERED"
+			);
+        System.out.print("New status index: >");
+        int statusChoice = sc.nextInt();
+        s.setStatus(ShipmentStatus.values()[statusChoice]);
+        System.out.printf("Updated: %s",s.basicInfo());
+        
+	} 
 		
 }
-//--- Staff Menu ---
-//1) Add Customer (ID + Name)
-//2) List/Toggle Discounts
-//3) Create Discount
-//4) Add Product
-//5) Update Shipment Status
-//6) Reports (~15)
-//0) Back

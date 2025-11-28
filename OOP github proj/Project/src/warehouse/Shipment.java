@@ -18,7 +18,7 @@ public class Shipment {
 	}
 
 	public String basicInfo() {
-		return String.format("Shipment: Order %s | %s | %s | %.2f kg to %s, %s, %s ",
+		return String.format("Order %s | %s | %s | %.2f kg to %s, %s, %s ",
 				Orderid, 
 				customer.getName(),
 				status,
@@ -26,6 +26,10 @@ public class Shipment {
 				address.getStreet(),
 				address.getCity(),
 				address.getCountry());
+	}
+
+	public void setStatus(ShipmentStatus status) {
+		this.status = status;
 	}
 	
 
