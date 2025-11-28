@@ -62,19 +62,11 @@ public class WarehouseSystem {
 			}
 		}
 		System.out.println("No Applicable Discounts.");
-		return null;
-	}
+		return null;}}
+	
 	
 	// ------------------------- Discounts end ------------------------------------
 	
 	
 	
-	public void addCustomer(Customer newCustomer) {
-		
-	}
 	
-	public void addProduct(Product P) {
-		
-	}
-
-}
