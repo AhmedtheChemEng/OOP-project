@@ -97,7 +97,7 @@ public class WarehouseSystem {
 			products.add(newProduct);}
 	}
 
-	public ArrayList<Product> getProduct() {
+	public ArrayList<Product> getProducts() {
 		return products;
 	}
 	

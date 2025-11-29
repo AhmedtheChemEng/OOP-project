@@ -1,5 +1,7 @@
 package warehouse;
 
+import java.util.InputMismatchException;
+
 public abstract class Product {
 	private String id;
 	private String name;
@@ -15,7 +17,7 @@ public abstract class Product {
 		this.name=name;
 		this.price=price;
 		this.weightKg=weightKg;
-		this.stockQty=stock;
+		setStock(stock);
 		
 	}
 
@@ -48,12 +50,15 @@ public abstract class Product {
 	}
 
 	public void setStock(int stock) {
-		this.stockQty = stock;
+		if (stock>=0) {
+			this.stockQty = stock;}
+		else throw new InputMismatchException("Stock must be 0 or postive integer!");
 
 	}
 
 	public String basicInfo() {
 		return "";
 	}
+	
 
 }

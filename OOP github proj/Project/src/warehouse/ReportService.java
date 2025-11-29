@@ -1,6 +1,126 @@
 package warehouse;
 
+import java.util.*;
+
 public class ReportService {
-	public static void runAllReports(WareHouseSystem s) {}
+	
+	public static void main(String[] args) {
+		WarehouseSystem w1 = new WarehouseSystem();
+		//---------------
+		w1.addDiscount(new FixedAmountDiscount("F10","2025-11-11","2025-11-30",10));
+		w1.addDiscount(new PercentageDiscount("P10","2025-11-21","2025-12-30",10));
+		w1.setDiscountActive(w1.getDiscounts().get(0));
+		//---------------
+//		w1.addProduct(new ElectronicProduct("E1","Phone",3000,1.2,1));
+//		w1.addProduct(new BookProduct());
+//		w1.addProduct(new GroceryProduct());
+		//---------------
+		
+		runAllReports(w1);
+	}
+	
+	public static void runAllReports(WarehouseSystem warehouse) {
+		String menu = "\n1) All Discounts\r\n"
+				+ "2) Active Discounts (today)\r\n"
+				+ "3) Products by Category\r\n"
+				+ "4) Low Stock (≤ threshold)\r\n"
+				+ "5) Out of Stock\r\n"
+				+ "6) Inventory Valuation (QAR)\r\n"
+				+ "7) Orders Today (YYYY-MM-DD)\r\n"
+				+ "8) Sales by Customer (QAR)\r\n"
+				+ "9) Shipments by Status\r\n"
+				+ "10) Shipments are not yet DELIVERED\r\n"
+				+ "11) Simple Top-Selling (counts)\r\n"
+				+ "12) Total Revenue (QAR, all time)\r\n"
+				+ "13) Payments Summary (from Orders)\r\n"
+				+ "14) Discount Usage\r\n"
+				+ "15) Active Discount Overlaps (today)\r\n"
+				+ "0) Back\r\n\n\nChoose: > ";
+		
+		Scanner kb = new Scanner(System.in);
+		int choice = 1;
+		// -------------------------- Reports Menu Loop ---------------------------------
+		
+		do {
+			System.out.print(menu);
+			choice = kb.nextInt();// this removes the \n entered after the number so that "Enter to continue" works
+			switch (choice) {
+				case 1 -> AllDiscounts(warehouse);
+				case 2 -> ActiveDiscounts(warehouse);
+				case 3 -> ProductsbyCategory(warehouse);
+				case 4 -> {System.out.print("Threshold: > ");;LowStock(warehouse,kb.nextInt());}
+	//			case 5 -> (warehouse);
+	//			case 6 -> (warehouse);
+				case 0 -> System.out.println("Returning to Staff Menu...\n");
+				default -> System.out.println("Invalid Choice!");
+			}
+			if (choice!=0){
+			System.out.print("\nPress Enter to continue...");
+			kb.nextLine();kb.nextLine();} // waits for users input to continue (The scanner is called twice to counter act previous '\n' input)
+		} while (choice!=0);
+		
+		// -------------------------- Reports Menu Loop end ---------------------------------
+		
+	}
+	
+	// ----------------------------- Helper Methods -------------------------------------
+		
+		private static void AllDiscounts(WarehouseSystem warehouse) {
+			System.out.println("\n[1] All Discounts:");
+			if (warehouse.getDiscounts().isEmpty()) {System.out.println(" None.");return;}
+			for (Discount d:warehouse.getDiscounts()) {
+				System.out.printf("- %s\n",d);
+			}
+			
+		}
+		
+		private static void ActiveDiscounts(WarehouseSystem warehouse) {
+			System.out.println("\n[2] Active Discounts:");
+			boolean none = true;
+			for (Discount d:warehouse.getDiscounts()) {
+				if (d.isActive()) {
+					none=false;
+					System.out.printf("- %s\n",d);}
+			}
+			if (none) {System.out.println(" None.");}
+		}
+	
+		private static void ProductsbyCategory(WarehouseSystem warehouse) {
+			System.out.println("\n[3] Products by Category:");
+			if (warehouse.getProducts().isEmpty()) {System.out.println(" None.");return;}
+			ProductListView.printCategorized(warehouse.getProducts());
+		}
+		
+		private static void LowStock(WarehouseSystem warehouse,int threshold) {
+			System.out.printf("\n[3] Low Stock (<= %d):\n",threshold);
+			boolean none = true;
+			for (Product p: warehouse.getProducts()) {
+				if (p.getStock()<=threshold) {
+					none = false;
+					System.out.printf("- %s\n",p);
+				}
+			}
+						
+			if (none) {System.out.println(" None.");}
+			// incomplete <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+		}
+		
+		private static void OutofStock(WarehouseSystem warehouse) {
+			System.out.println("\n[3] Out of Stock:");
+			boolean none = true;
+			for (Product p: warehouse.getProducts()) {
+				if (p.getStock()==0) {
+					none = false;
+					System.out.printf("- %s\n",p);
+				}
+			}			
+			if (none) {System.out.println(" None.");}
+		}
+		
+		
+		
+//		private static void (WarehouseSystem warehouse) {}
+	
+	// ----------------------------- Helper Methods end -------------------------------------
 
 }

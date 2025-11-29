@@ -22,7 +22,7 @@ public class PercentageDiscount extends Discount{
 		if (0<percent && percent<=100)
 			this.percent = percent;
 		else {
-			throw new InputMismatchException("Percentage Must be more than 0 to 100.");
+			throw new InputMismatchException("Percentage Must be from 0 to 100.");
 		}
 	}
 

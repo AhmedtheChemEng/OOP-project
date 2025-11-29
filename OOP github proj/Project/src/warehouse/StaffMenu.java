@@ -25,7 +25,7 @@ public class StaffMenu {
 			case 3 -> createDiscount(sc, system);
 			case 4 -> addProduct(sc, system);
 			case 5 -> updateShipment(sc, system);
-			//case 6 -> ReportService.runAllReports(system);
+			case 6 -> ReportService.runAllReports(system);
 			// case 0 ->
 			default -> System.out.println("Invalid Choice!");
 			}
