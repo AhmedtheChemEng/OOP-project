@@ -57,8 +57,11 @@ public abstract class Product {
 	}
 
 	public String basicInfo() {
-		return "";
+		return String.format("%s (%s)",name,id);
 	}
 	
+	public String toString() {
+		return String.format("%s: %s (ID %s), stock %d, price QAR %.2f",getClass().getSimpleName(),name,id,stockQty,price);
+	}
 
 }

@@ -11,8 +11,8 @@ public class ReportService {
 		w1.addDiscount(new PercentageDiscount("P10","2025-11-21","2025-12-30",10));
 		w1.setDiscountActive(w1.getDiscounts().get(0));
 		//---------------
-//		w1.addProduct(new ElectronicProduct("E1","Phone",3000,1.2,1));
-//		w1.addProduct(new BookProduct());
+		w1.addProduct(new ElectronicProduct("E1","Phone",3000,1.2,1));
+		w1.addProduct(new BookProduct("B1","Math",300,3,5));
 //		w1.addProduct(new GroceryProduct());
 		//---------------
 		
@@ -48,9 +48,18 @@ public class ReportService {
 				case 1 -> AllDiscounts(warehouse);
 				case 2 -> ActiveDiscounts(warehouse);
 				case 3 -> ProductsbyCategory(warehouse);
-				case 4 -> {System.out.print("Threshold: > ");;LowStock(warehouse,kb.nextInt());}
-	//			case 5 -> (warehouse);
-	//			case 6 -> (warehouse);
+				case 4 -> {System.out.print("Threshold: > ");LowStock(warehouse,kb.nextInt());}
+				case 5 -> OutofStock(warehouse);
+				case 6 -> InventoryValuation(warehouse);
+	//			case 7 -> (warehouse);
+	//			case 8 -> (warehouse);
+	//			case 9 -> (warehouse);
+	//			case 10 -> (warehouse);
+	//			case 11 -> (warehouse);
+	//			case 12 -> (warehouse);
+	//			case 13 -> (warehouse);
+	//			case 14 -> (warehouse);
+	//			case 15 -> (warehouse);
 				case 0 -> System.out.println("Returning to Staff Menu...\n");
 				default -> System.out.println("Invalid Choice!");
 			}
@@ -92,12 +101,12 @@ public class ReportService {
 		}
 		
 		private static void LowStock(WarehouseSystem warehouse,int threshold) {
-			System.out.printf("\n[3] Low Stock (<= %d):\n",threshold);
+			System.out.printf("\n[4] Low Stock (<= %d):\n",threshold);
 			boolean none = true;
 			for (Product p: warehouse.getProducts()) {
 				if (p.getStock()<=threshold) {
 					none = false;
-					System.out.printf("- %s\n",p);
+					System.out.printf("- %s stock %d\n",p.basicInfo(),p.getStock());
 				}
 			}
 						
@@ -106,18 +115,27 @@ public class ReportService {
 		}
 		
 		private static void OutofStock(WarehouseSystem warehouse) {
-			System.out.println("\n[3] Out of Stock:");
+			System.out.println("\n[5] Out of Stock:");
 			boolean none = true;
 			for (Product p: warehouse.getProducts()) {
 				if (p.getStock()==0) {
 					none = false;
-					System.out.printf("- %s\n",p);
+					System.out.printf("- %s\n",p.basicInfo());
 				}
 			}			
 			if (none) {System.out.println(" None.");}
 		}
 		
-		
+		private static void InventoryValuation(WarehouseSystem warehouse) {
+			System.out.println("\n[6] Inventory Valuation (QAR):");
+			double sum = 0;
+			
+			for (Product p:warehouse.getProducts()) {
+				sum+= p.getPrice()*p.getStock();
+			}
+			System.out.printf("Total: QAR %.2f (computed by system based on current stock)\n",sum);
+
+		}
 		
 //		private static void (WarehouseSystem warehouse) {}
 	
