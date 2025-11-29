@@ -11,10 +11,10 @@ public class Order {
     private double subtotal, discountAmount, shippingFee, total;
     private Discount appliedDiscount;
 
-    public Order(String id, Customer customer, LocalDate date, ArrayList<OrderItem> items, double subtotal, double discountAmount, double shippingFee, double total, Discount appliedDiscount) {
+    public Order(String id, Customer customer, ArrayList<OrderItem> items, double subtotal, double shippingFee, double total, Discount appliedDiscount) {
         this.id = id;
         this.customer = customer;
-        this.date = date;
+        this.date = LocalDate.now();
         this.items = items;
         this.subtotal = subtotal;
         this.discountAmount = discountAmount;
@@ -94,4 +94,11 @@ public class Order {
     public void setAppliedDiscount(Discount appliedDiscount) {
         this.appliedDiscount = appliedDiscount;
     }
+    
+    public String toString() {
+    	
+    	
+    	return String.format("%8s| %8s| QAR %.2f", id,customer.getName(),total);
+    }
+    
 }

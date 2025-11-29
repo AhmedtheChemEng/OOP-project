@@ -18,6 +18,34 @@ public class WarehouseSystem implements Serializable{
 
 	}
 
+	// ------------------------- Setters ------------------------------------
+	
+	public void setCustomers(ArrayList<Customer> customers) {
+		this.customers = customers;
+	}
+
+	public void setProducts(ArrayList<Product> products) {
+		this.products = products;
+	}
+
+	public void setOrders(ArrayList<Order> orders) {
+		this.orders = orders;
+	}
+
+	public void setShipments(ArrayList<Shipment> shipments) {
+		this.shipments = shipments;
+	}
+
+	public void setRateTable(RateTable rateTable) {
+		this.rateTable = rateTable;
+	}
+
+	public void setDiscounts(ArrayList<Discount> discounts) {
+		this.discounts = discounts;
+	}
+	
+	// ------------------------- Setters end ------------------------------------
+	
 	
 	// ------------------------- Discounts ------------------------------------
 	
@@ -25,9 +53,6 @@ public class WarehouseSystem implements Serializable{
 		return discounts;
 	}
 
-	public void setDiscounts(ArrayList<Discount> discounts) {
-		this.discounts = discounts;
-	}
 	
 	private void deactivateOverlaps(Discount newDiscount) {
 		for (Discount d : discounts) {//deactivates overlapping discounts

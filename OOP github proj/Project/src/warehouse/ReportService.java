@@ -1,5 +1,6 @@
 package warehouse;
 
+import java.time.LocalDate;
 import java.util.*;
 
 public class ReportService {
@@ -15,12 +16,17 @@ public class ReportService {
 		w1.addProduct(new BookProduct("B1","Math",300,3,5));
 //		w1.addProduct(new GroceryProduct());
 		//---------------
+		Customer c1 = new Customer("A1","Ali");
+		w1.addCustomer(c1);
+		//---------------
+//		w1.addOrder();
+		//---------------
 		
 		runAllReports(w1);
 	}
 	
 	public static void runAllReports(WarehouseSystem warehouse) {
-		String menu = "\n1) All Discounts\r\n"
+		final String menu = "\n1) All Discounts\r\n"
 				+ "2) Active Discounts (today)\r\n"
 				+ "3) Products by Category\r\n"
 				+ "4) Low Stock (≤ threshold)\r\n"
@@ -51,8 +57,8 @@ public class ReportService {
 				case 4 -> {System.out.print("Threshold: > ");LowStock(warehouse,kb.nextInt());}
 				case 5 -> OutofStock(warehouse);
 				case 6 -> InventoryValuation(warehouse);
-	//			case 7 -> (warehouse);
-	//			case 8 -> (warehouse);
+				case 7 -> OrdersToday(warehouse);
+				case 8 -> SalesbyCustomer(warehouse);
 	//			case 9 -> (warehouse);
 	//			case 10 -> (warehouse);
 	//			case 11 -> (warehouse);
@@ -134,7 +140,35 @@ public class ReportService {
 				sum+= p.getPrice()*p.getStock();
 			}
 			System.out.printf("Total: QAR %.2f (computed by system based on current stock)\n",sum);
-
+		}
+		
+		private static void OrdersToday(WarehouseSystem warehouse) {
+			System.out.printf("[7] Orders Today (%s):\n",LocalDate.now());
+			if (warehouse.getOrders().isEmpty()) {System.out.println(" None.");return;}
+			for (Order o:warehouse.getOrders()) {
+				System.out.println(o);
+			}
+			
+		}
+		
+		private static void SalesbyCustomer(WarehouseSystem warehouse) {
+			System.out.println("[8] Sales by Customer:");
+			if (warehouse.getOrders().isEmpty()) {System.out.println(" None.");return;}
+			for (Order o:warehouse.getOrders()) {
+				System.out.printf("- %9s QAR %.2f",o.getCustomer().getName()+":",o.getTotal());
+			}
+		}
+		
+		private static void ShipmentsbyStatus(WarehouseSystem warehouse) {
+			System.out.println("[9] Shipments by Status:");
+			if (warehouse.getOrders().isEmpty()) {System.out.println(" None.");return;}
+			ArrayList<Order> orders = new ArrayList<>();
+			ArrayList<Shipment> shipments = new ArrayList<>();
+			
+			for (Order o:warehouse.getOrders()) {
+				System.out.printf("- Order %s | %8s| %9s | %.2f kg to %s");
+				
+			}
 		}
 		
 //		private static void (WarehouseSystem warehouse) {}
