@@ -156,7 +156,7 @@ public class CustomerMenu {
                 String orderId = OrderIdGenerator.nextId();
                 System.out.println("Order ID: " + orderId);
 
-                Order order = new Order(orderId, customer, system.getToday(), cart.toOrderItems(), subtotal, discountAmount, shipping, total, discount);
+                Order order = new Order(orderId, customer, system.getToday(), cart.toOrderItems(), subtotal, discountAmount, shipping, total, discount, payment);
                 system.addOrder(order);
 
                 Shipment shipment = new Shipment(orderId, weight, customer, address, ShipmentStatus.CREATED);
