@@ -35,7 +35,7 @@ public class ShoppingCart {
 	    public double subtotal() {
 	        double sum = 0;
 	        for (CartItem item : items) {
-	            sum += item.lineSubtotal();
+	            sum += item.lineSubTotal();
 	        }
 	        return sum;
 	    }
@@ -65,4 +65,4 @@ public class ShoppingCart {
 	    }
 	}
 
-}
+

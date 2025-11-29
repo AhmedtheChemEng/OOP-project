@@ -1,8 +1,10 @@
 package warehouse;
 
 public class CardPayment implements Payment {
-    private String currency, cardHolder, maskedNumber;
+    private String  cardHolder, maskedNumber;
     private double amount;
+    private String currency = "QAR";
+    
 
 
     public String getCurrency() {
@@ -37,8 +39,8 @@ public class CardPayment implements Payment {
         this.maskedNumber = maskedNumber;
     }
 
-    public CardPayment(String currency, String cardHolder, String maskedNumber, double amount) {
-        this.currency = currency;
+    public CardPayment(String cardHolder, String maskedNumber, double amount) {
+        
         this.cardHolder = cardHolder;
         this.maskedNumber = maskedNumber;
         this.amount = amount;

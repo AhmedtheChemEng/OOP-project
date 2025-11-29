@@ -5,7 +5,9 @@ import java.time.LocalDate;
 import java.util.*;
 
 public class WarehouseSystem implements Serializable{
-
+	
+	
+	
 	private ArrayList<Customer> customers = new ArrayList<>();
 	private ArrayList<Product> products = new ArrayList<>();
 	private ArrayList<Discount> discounts = new ArrayList<>();

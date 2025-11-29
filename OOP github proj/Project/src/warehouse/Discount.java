@@ -5,6 +5,7 @@ import java.time.*;
 import java.io.*;
 
 abstract class Discount implements Serializable{
+	
 	private String code;
 	private LocalDate startDate;
 	private LocalDate endDate;

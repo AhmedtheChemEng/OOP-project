@@ -1,7 +1,9 @@
 package warehouse;
+import java.io.*;
 
-public class Address {
+public class Address implements Serializable{
     private String street, city, country;
+   
 
     public String getStreet() {
         return street;

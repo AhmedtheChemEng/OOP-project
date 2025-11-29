@@ -1,72 +1,100 @@
 package warehouse;
+
 import java.time.*;
 import java.util.*;
 import java.io.*;
 
 public class App {
-	public LocalDate TODAY= LocalDate.of(2025,10,24);
-public static void main(String[] args) {
-	WarehouseSystem w1= new WarehouseSystem();
-	SeedData.load(w1);
-	save(w1,"testing");
-	
-	
-	
-}
+	public LocalDate TODAY = LocalDate.of(2025, 10, 24);
 
-private static void MainMenu(Scanner sc,WarehouseSystem system) {
+	public static void main(String[] args) {
+		WarehouseSystem w1 = new WarehouseSystem();
+		
+		loadData(w1,"testing");
+		System.out.println(w1.getProducts());
+	
+		
+
+	}
+
+	private static void MainMenu(Scanner sc, WarehouseSystem system) {
 		int choice;
 		do {
-				System.out.println("=== Single-Warehouse System (QAR) ===");
-				System.out.println("1) Staff Menu\n"+
-									"2) Customer Menu\n"+
-									"0) Exit");
-				System.out.print("Choose: > ");
-				choice = sc.nextInt();
-				sc.nextLine();
-				switch(choice) {
-				case 1-> StaffMenu.run(sc, system);
-				//case 2-> CustomerMenu.run(sc, system);
-				case 0-> {System.out.println("Goodbye.");
-						System.exit(0);}
-				}
-				
-		}while (choice != 0);
-	
-}
-private static void save(WarehouseSystem sys,String fileName) {
-	ObjectOutputStream out = null;
+			System.out.println("=== Single-Warehouse System (QAR) ===");
+			System.out.println("1) Staff Menu\n" + "2) Customer Menu\n" + "0) Exit");
+			System.out.print("Choose: > ");
+			choice = sc.nextInt();
+			sc.nextLine();
+			switch (choice) {
+			case 1 -> StaffMenu.run(sc, system);
+			// case 2-> CustomerMenu.run(sc, system);
+			case 0 -> {
+				System.out.println("Goodbye.");
+				System.exit(0);
+			}
+			}
 
-    try {
-        FileOutputStream fos = new FileOutputStream(fileName);
-        out = new ObjectOutputStream(fos);
+		} while (choice != 0);
 
-        // Put all lists in one ArrayList										private ArrayList<Customer> customers = new ArrayList<>();
-    	
-        ArrayList<Object> master = new ArrayList<>();
-        master.add(sys.getProducts());
-        master.add(sys.getDiscounts());
-        master.add(sys.getOrders());
-        master.add(sys.getShipments());
-        
-        // Add more if needed, but keep the same order when loading
+	}
 
-        out.writeObject(master);
+	private static void save(WarehouseSystem sys, String fileName) {
+		ObjectOutputStream out = null;
 
-        System.out.println("Saved successfully to " + fileName);
+		try {
+			FileOutputStream fos = new FileOutputStream(fileName);
+			out = new ObjectOutputStream(fos);
 
-    } catch (IOException e) {
-        System.out.println("Error while saving: " + e.getMessage());
-    } finally {
-        try {
-            if (out != null) out.close();
-        } catch (IOException ignored) {}
-    }
-}
-			
+			// Put all lists in one ArrayList private ArrayList<Customer> customers = new
+			// ArrayList<>();
+
+			ArrayList<Object> master = new ArrayList<>();
+			master.add(sys.getProducts());
+			master.add(sys.getDiscounts());
+			master.add(sys.getOrders());
+			master.add(sys.getShipments());
+
+			// Add more if needed, but keep the same order when loading
+
+			out.writeObject(master);
+
+			System.out.println("Saved successfully to " + fileName);
+
+		} catch (IOException e) {
+			System.out.println("Error while saving: " + e.getMessage());
+		} finally {
+			try {
+				if (out != null)
+					out.close();
+			} catch (IOException ignored) {
+			}
 		}
-	
+	}
 
+	public static void loadData(WarehouseSystem sys, String filename) {
+		ObjectInputStream in = null;
 
+		try {
+			in = new ObjectInputStream(new FileInputStream(filename));
 
+			ArrayList<Object> master = (ArrayList<Object>) in.readObject();
 
+			sys.setProducts((ArrayList<Product>) master.get(0));
+			sys.setDiscounts((ArrayList<Discount>) master.get(1));
+			sys.setOrders((ArrayList<Order>) master.get(2));
+			sys.setShipments((ArrayList<Shipment>) master.get(3));
+
+			System.out.println("Loaded successfully from " + filename);
+		} catch (IOException | ClassNotFoundException e) {
+			System.out.println("Error while loading: " + e.getMessage());
+		} finally {
+			try {
+				if (in != null)
+					in.close();
+			} catch (IOException ignored) {
+			}
+		}
+
+	}
+
+}

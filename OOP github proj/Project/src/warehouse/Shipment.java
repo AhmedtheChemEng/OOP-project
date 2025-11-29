@@ -2,12 +2,13 @@ package warehouse;
 import java.time.LocalDate;
 import java.io.*;
 
-public class Shipment {
+public class Shipment implements Serializable{
 	private String Orderid;
 	private double totalWeightKg;
 	private Customer customer;
 	private Address address;
 	private ShipmentStatus status;
+
 	
 	public Shipment(String orderid, double totalWeightKg, Customer customer, Address address, ShipmentStatus status) {
 		super();

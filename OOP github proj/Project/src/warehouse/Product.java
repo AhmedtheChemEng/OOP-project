@@ -1,14 +1,16 @@
 package warehouse;
 
 import java.util.InputMismatchException;
+import  java.io.*;
 
-public abstract class Product {
+public abstract class Product implements Serializable{
 	private String id;
 	private String name;
 	private String curency;
 	private double price;
 	private double weightKg;
 	private int stockQty;
+	
 
 	public abstract String getCategory();
 	

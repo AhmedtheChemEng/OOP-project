@@ -1,6 +1,8 @@
 package warehouse;
+import java.io.*;
+public class RateTable implements Serializable{
 
-public class RateTable {
+	
 	
 	double[] maxWeights = {2,5,10};
 	double[] feesQar = {10,20,35,50};

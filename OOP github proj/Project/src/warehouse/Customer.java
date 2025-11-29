@@ -2,6 +2,7 @@ package warehouse;
 import java.io.*;
 
 public class Customer implements Serializable{
+	
 	private String id;
 	private String name;
 	

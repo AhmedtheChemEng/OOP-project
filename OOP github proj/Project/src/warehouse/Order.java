@@ -1,15 +1,17 @@
 package warehouse;
 
 import java.time.LocalDate;
+import java.io.*;
 import java.util.ArrayList;
 
-public class Order {
+public class Order implements Serializable{
     private String id;
     private Customer customer;
     private LocalDate date;
     private ArrayList<OrderItem> items;
     private double subtotal, discountAmount, shippingFee, total;
     private Discount appliedDiscount;
+   
 
     public Order(String id, Customer customer, ArrayList<OrderItem> items, double subtotal, double shippingFee, double total, Discount appliedDiscount) {
         this.id = id;

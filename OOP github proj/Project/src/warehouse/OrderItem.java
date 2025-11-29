@@ -1,9 +1,10 @@
 package warehouse;
-
-public class OrderItem {
+import java.io.*;
+public class OrderItem implements Serializable{
     private Product product;
     private int quantity;
     private double unitPriceQar;
+    
 
     public Product getProduct() {
         return product;
