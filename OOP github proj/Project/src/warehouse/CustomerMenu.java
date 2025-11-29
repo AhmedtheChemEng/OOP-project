@@ -1,8 +1,7 @@
-package warehouse;
-import java.util.*;
+import java.util.Scanner;
 
 public class CustomerMenu {
-	public static void run(Scanner sc, WarehouseSystem system) {
+    public static void run(Scanner sc, WarehouseSystem system) {
         System.out.println("Available Customer IDs:");
         for (Customer c : system.getCustomers()) {
             System.out.printf("- %s (%s)%n", c.getId(), c.getName());
@@ -174,6 +173,4 @@ public class CustomerMenu {
             }
         }
     }
-}
-
 }
