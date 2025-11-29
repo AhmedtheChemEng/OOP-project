@@ -1,9 +1,8 @@
 package warehouse;
 
 import java.util.InputMismatchException;
-import java.io.*;
 
-public abstract class Product implements Serializable{
+public abstract class Product {
 	private String id;
 	private String name;
 	private String curency;
@@ -58,13 +57,11 @@ public abstract class Product implements Serializable{
 	}
 
 	public String basicInfo() {
-		return "";
+		return String.format("%s (%s)",name,id);
 	}
 	
-
 	public String toString() {
 		return String.format("- %s: %s (ID %s), stock %d, price QAR %.2f",getClass().getSimpleName(),name,id,stockQty,price);
 	}
-
 
 }

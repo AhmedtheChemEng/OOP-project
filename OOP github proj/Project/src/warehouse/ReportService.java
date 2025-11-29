@@ -165,9 +165,10 @@ public class ReportService {
 			ArrayList<Order> orders = new ArrayList<>();
 			ArrayList<Shipment> shipments = new ArrayList<>();
 			
-			for (Order o:warehouse.getOrders()) {
-				System.out.printf("- Order %s | %8s| %9s | %.2f kg to %s");
+			for (int i=0; i<) {
 				
+				
+				System.out.printf("- Order %s | %8s| %9s | %.2f kg to %s");
 			}
 		}
 		
