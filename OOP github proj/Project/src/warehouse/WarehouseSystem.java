@@ -17,6 +17,10 @@ public class WarehouseSystem implements Serializable{
 		// TODO Auto-generated method stub
 
 	}
+	
+	public static LocalDate getToday() {
+		return LocalDate.now();
+	}
 
 	// ------------------------- Setters ------------------------------------
 	

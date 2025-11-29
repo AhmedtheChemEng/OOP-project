@@ -184,7 +184,9 @@ public class ReportService {
 			System.out.println("[11] Simple Top-Selling (counts)");
 			ArrayList<OrderItem> soldItems = new ArrayList<>();
 			for (Order o:warehouse.getOrders()) {
-				
+				for (OrderItem oi:o.getItems()) {
+					if ()
+				}
 			}
 			
 			
