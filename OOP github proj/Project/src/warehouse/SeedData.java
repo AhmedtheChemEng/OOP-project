@@ -33,7 +33,7 @@ public class SeedData {
         s.addDiscount(new PercentageDiscount("P5", "2025-10-23", "2025-10-25", 5.0));
 
         Discount f25 = new FixedAmountDiscount("F25", "2025-10-29", "2025-11-26", 25.0);
-        f25.setActive(true);
+        s.setDiscountActive(f25);
         s.addDiscount(f25);
 
         s.addDiscount(new PercentageDiscount("P20", "2025-09-24", "2025-10-04", 20.0));

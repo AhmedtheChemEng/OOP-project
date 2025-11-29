@@ -35,11 +35,11 @@ public class PercentageDiscount extends Discount{
 
 	@Override
 	public String getDetails() {
-		return String.format("Percent(%s) %.2f%% [%s to %s] | Active: %s", getCode(), percent, getStartDate(), getEndDate(), isActive());
+		return String.format("Percent(%s) %.2f%% [%s to %s]", getCode(), percent, getStartDate(), getEndDate());
 	}
 	
 	public String toString() {
-		return getDetails();
+		return String.format("%s  | Active: %s",getDetails(),isActive());
 	}
 	
 	

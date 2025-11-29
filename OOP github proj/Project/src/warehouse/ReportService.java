@@ -12,14 +12,20 @@ public class ReportService {
 		w1.addDiscount(new PercentageDiscount("P10","2025-11-21","2025-12-30",10));
 		w1.setDiscountActive(w1.getDiscounts().get(0));
 		//---------------
-		w1.addProduct(new ElectronicProduct("E1","Phone",3000,1.2,1));
+		ElectronicProduct ep1 = new ElectronicProduct("E1","Phone",3000,1.2,1);
+		w1.addProduct(ep1);
 		w1.addProduct(new BookProduct("B1","Math",300,3,5));
 //		w1.addProduct(new GroceryProduct());
 		//---------------
 		Customer c1 = new Customer("A1","Ali");
 		w1.addCustomer(c1);
 		//---------------
-//		w1.addOrder();
+		OrderItem oi1= new OrderItem(ep1, 2, ep1.getPrice());
+		ArrayList<OrderItem> oia = new ArrayList();
+		oia.add(oi1);
+		w1.addOrder(new Order(OrderIdGenerator.nextId(), c1, oia , 1, 2, 300, new FixedAmountDiscount("F10","2025-11-11","2025-11-30",10)));
+		w1.addOrder(new Order(OrderIdGenerator.nextId(), c1, oia , 1, 2, 350, new FixedAmountDiscount("F10","2025-11-11","2025-11-30",10)));
+
 		//---------------
 		
 		runAllReports(w1);
@@ -61,8 +67,8 @@ public class ReportService {
 				case 8 -> SalesbyCustomer(warehouse);
 				case 9 -> ShipmentsbyStatus(warehouse);
 				case 10 -> ShipmentsnotyetDELIVERED(warehouse);
-	//			case 11 -> (warehouse);
-	//			case 12 -> (warehouse);
+				case 11 -> TopSelling(warehouse);
+				case 12 -> TotalRevenue(warehouse);
 	//			case 13 -> (warehouse);
 	//			case 14 -> (warehouse);
 	//			case 15 -> (warehouse);
@@ -84,7 +90,7 @@ public class ReportService {
 			System.out.println("\n[1] All Discounts:");
 			if (warehouse.getDiscounts().isEmpty()) {System.out.println(" None.");return;}
 			for (Discount d:warehouse.getDiscounts()) {
-				System.out.printf("- %s\n",d);
+				System.out.printf(" - %s\n",d);
 			}
 			
 		}
@@ -95,7 +101,7 @@ public class ReportService {
 			for (Discount d:warehouse.getDiscounts()) {
 				if (d.isActive()) {
 					none=false;
-					System.out.printf("- %s\n",d);}
+					System.out.printf(" - %s\n",d);}
 			}
 			if (none) {System.out.println(" None.");}
 		}
@@ -112,7 +118,7 @@ public class ReportService {
 			for (Product p: warehouse.getProducts()) {
 				if (p.getStock()<=threshold) {
 					none = false;
-					System.out.printf("- %s stock %d\n",p.basicInfo(),p.getStock());
+					System.out.printf(" - %s stock %d\n",p.basicInfo(),p.getStock());
 				}
 			}
 						
@@ -126,7 +132,7 @@ public class ReportService {
 			for (Product p: warehouse.getProducts()) {
 				if (p.getStock()==0) {
 					none = false;
-					System.out.printf("- %s\n",p.basicInfo());
+					System.out.printf(" - %s\n",p.basicInfo());
 				}
 			}			
 			if (none) {System.out.println(" None.");}
@@ -143,7 +149,7 @@ public class ReportService {
 		}
 		
 		private static void OrdersToday(WarehouseSystem warehouse) {
-			System.out.printf("[7] Orders Today (%s):\n",LocalDate.now());
+			System.out.printf("[7] Orders Today (%s):\n",warehouse.getToday());
 			if (warehouse.getOrders().isEmpty()) {System.out.println(" None.");return;}
 			for (Order o:warehouse.getOrders()) {
 				System.out.println(o);
@@ -155,7 +161,7 @@ public class ReportService {
 			System.out.println("[8] Sales by Customer:");
 			if (warehouse.getOrders().isEmpty()) {System.out.println(" None.");return;}
 			for (Order o:warehouse.getOrders()) {
-				System.out.printf("- %9s QAR %.2f",o.getCustomer().getName()+":",o.getTotal());
+				System.out.printf(" - %9s QAR %.2f",o.getCustomer().getName()+":",o.getTotal());
 			}
 		}
 		
@@ -181,16 +187,42 @@ public class ReportService {
 		}
 		
 		private static void TopSelling(WarehouseSystem warehouse) {
-			System.out.println("[11] Simple Top-Selling (counts)");
+			System.out.println("[11] Simple Top-Selling (counts):");
 			ArrayList<OrderItem> soldItems = new ArrayList<>();
+			boolean found;
 			for (Order o:warehouse.getOrders()) {
 				for (OrderItem oi:o.getItems()) {
-					if ()
+					found = false;
+					for (OrderItem si:soldItems) {
+						if (si.getProduct()==oi.getProduct()) {
+							si.setQuantity(si.getQuantity()+oi.getQuantity());
+							found = true;
+							break;
+						}
+					
+					}
+					if (!found) {
+						soldItems.add(oi);
+					}	
 				}
 			}
 			
-			
+			for (OrderItem oi:soldItems) {
+				System.out.printf(" - %s (%s): %d units\n",oi.getProduct().getName(),oi.getProduct().getId(),oi.getQuantity());
+			}
+			if (soldItems.isEmpty()) {System.out.println(" None.");return;}
 		}
+		
+		private static void TotalRevenue(WarehouseSystem warehouse) {
+			double totalRevenue = 0;
+			for (Order o : warehouse.getOrders()) totalRevenue += o.getTotal();
+
+			System.out.println("[12] Total Revenue (QAR, all time):");
+			System.out.printf("Total: QAR %.2f\n",totalRevenue);
+
+		}
+
+		private static void PaymentsSummary(WarehouseSystem warehouse) {}
 		
 //		private static void (WarehouseSystem warehouse) {}
 	

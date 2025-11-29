@@ -4,6 +4,6 @@ public class OrderIdGenerator {
     public static String nextId(){
         counter++;
 
-        return String.format("ORD-%04D",counter);
+        return String.format("ORD%4d",counter);
     }
 }

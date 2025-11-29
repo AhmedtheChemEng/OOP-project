@@ -63,7 +63,7 @@ public abstract class Product implements Serializable{
 	}
 	
 	public String toString() {
-		return String.format("- %s: %s (ID %s), stock %d, price QAR %.2f",getClass().getSimpleName(),name,id,stockQty,price);
+		return String.format(" - %s: %s (ID %s), stock %d, price QAR %.2f",getClass().getSimpleName(),name,id,stockQty,price);
 	}
 
 }
