@@ -5,32 +5,6 @@ import java.util.*;
 
 public class ReportService {
 	
-	public static void main(String[] args) {
-		WarehouseSystem w1 = new WarehouseSystem();
-		//---------------
-		w1.addDiscount(new FixedAmountDiscount("F10","2025-11-11","2025-11-30",10));
-		w1.addDiscount(new PercentageDiscount("P10","2025-11-21","2025-12-30",10));
-		w1.setDiscountActive(w1.getDiscounts().get(0));
-		//---------------
-		ElectronicProduct ep1 = new ElectronicProduct("E1","Phone",3000,1.2,1);
-		w1.addProduct(ep1);
-		w1.addProduct(new BookProduct("B1","Math",300,3,5));
-//		w1.addProduct(new GroceryProduct());
-		//---------------
-		Customer c1 = new Customer("A1","Ali");
-		w1.addCustomer(c1);
-		//---------------
-		OrderItem oi1= new OrderItem(ep1, 2, ep1.getPrice());
-		ArrayList<OrderItem> oia = new ArrayList();
-		oia.add(oi1);
-		w1.addOrder(new Order(OrderIdGenerator.nextId(), c1, oia , 1, 2, 300, new FixedAmountDiscount("F10","2025-11-11","2025-11-30",10)));
-		w1.addOrder(new Order(OrderIdGenerator.nextId(), c1, oia , 1, 2, 350, new FixedAmountDiscount("F10","2025-11-11","2025-11-30",10)));
-
-		//---------------
-		
-		runAllReports(w1);
-	}
-	
 	public static void runAllReports(WarehouseSystem warehouse) {
 		final String menu = "\n1) All Discounts\r\n"
 				+ "2) Active Discounts (today)\r\n"
@@ -69,9 +43,9 @@ public class ReportService {
 				case 10 -> ShipmentsnotyetDELIVERED(warehouse);
 				case 11 -> TopSelling(warehouse);
 				case 12 -> TotalRevenue(warehouse);
-	//			case 13 -> (warehouse);
-	//			case 14 -> (warehouse);
-	//			case 15 -> (warehouse);
+				case 13 -> PaymentsSummary(warehouse);
+				case 14 -> DiscountUsage(warehouse);
+				case 15 -> ActiveDiscountOverlaps(warehouse);
 				case 0 -> System.out.println("Returning to Staff Menu...\n");
 				default -> System.out.println("Invalid Choice!");
 			}
@@ -222,10 +196,69 @@ public class ReportService {
 
 		}
 
-		private static void PaymentsSummary(WarehouseSystem warehouse) {}
+		private static void PaymentsSummary(WarehouseSystem warehouse) {
+			System.out.println("[13] Payments Summary (from Orders):");
+
+			ArrayList<String> cardCustomers = new ArrayList<>();
+			ArrayList<String> cashCustomers = new ArrayList<>();
+
+			for (Order o : warehouse.getOrders()) {
+			    Payment p = o.getPayment();
+			    Customer c = o.getCustomer();
+
+			    if (p instanceof CardPayment) {
+			        cardCustomers.add(c.getName());
+			    } else if (p instanceof CashPayment) {
+			        cashCustomers.add(c.getName());
+			    }
+			}
+			double totalRevenue = 0;
+			for (Order o : warehouse.getOrders()) totalRevenue += o.getTotal();
+
+			System.out.printf("Collected: QAR %.2f%n",totalRevenue);
+			System.out.printf("(mix: card for %s; cash for %s)%n",
+			        String.join(", ", cardCustomers),
+			        String.join(", ", cashCustomers));
+		}
 		
-//		private static void (WarehouseSystem warehouse) {}
-	
+		private static void DiscountUsage(WarehouseSystem warehouse) {
+			System.out.println("[14] Discount Usage:");
+			ArrayList<Discount> UsedDiscounts = new ArrayList<>();
+			ArrayList<Integer> UDnum = new ArrayList<>();
+			ArrayList<Double> DAmm = new ArrayList<>();
+			
+			for(Order o:warehouse.getOrders()) {
+				if (UsedDiscounts.contains(o.getAppliedDiscount())){
+					int index = UsedDiscounts.indexOf(o.getAppliedDiscount());
+					UDnum.set(index, UDnum.get(index)+1);
+					DAmm.set(index, DAmm.get(index)+o.getDiscountAmount());
+				}
+				else {
+					UsedDiscounts.add(o.getAppliedDiscount());
+					UDnum.add(1);
+					DAmm.add(o.getDiscountAmount());
+				}
+			}
+			for (int i=0;i<UsedDiscounts.size();i++) {
+				System.out.printf(" - %-8s times %d, total discount QAR %.2f\n",UsedDiscounts.get(i).getCode()+":",UDnum.get(i),DAmm.get(i));
+			}
+			if (UsedDiscounts.isEmpty()) {System.out.println(" None.");}
+		}
+		
+		private static void ActiveDiscountOverlaps(WarehouseSystem warehouse) {
+			System.out.printf("[15] Active Discount Overlaps (today %s)",warehouse.getToday());
+			Discount ActiveDiscount=warehouse.findApplicableDiscount(warehouse.getToday());
+			
+			if (ActiveDiscount!=null) {
+				for(Discount d:warehouse.getDiscounts() ) {
+					if(d.overlaps(ActiveDiscount, d)) {
+						System.out.println(d.getDetails());
+					};
+					
+				}
+			}
+			else {System.out.println(" None.");}
+		}
 	// ----------------------------- Helper Methods end -------------------------------------
 
 }

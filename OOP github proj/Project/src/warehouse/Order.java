@@ -27,6 +27,13 @@ public class Order implements Serializable {
 		
 	}
 
+	
+	
+	public Payment getPayment() {
+		return payment;
+	}
+
+
 	public String getId() {
         return id;
     }
@@ -61,5 +68,8 @@ public class Order implements Serializable {
 
     public Discount getAppliedDiscount() {
         return appliedDiscount;
+    }
+    public String toString() {
+    	return String.format("%8s| %8s| QAR %.2f", id,customer.getName(),total);
     }
 }
