@@ -1,6 +1,7 @@
 package warehouse;
+import java.io.*;
 
-public class Customer {
+public class Customer implements Serializable{
 	private String id;
 	private String name;
 	

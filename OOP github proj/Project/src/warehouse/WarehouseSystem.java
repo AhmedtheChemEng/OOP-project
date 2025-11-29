@@ -1,9 +1,10 @@
 package warehouse;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.*;
 
-public class WarehouseSystem {
+public class WarehouseSystem implements Serializable{
 
 	private ArrayList<Customer> customers = new ArrayList<>();
 	private ArrayList<Product> products = new ArrayList<>();

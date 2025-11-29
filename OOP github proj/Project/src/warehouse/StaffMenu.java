@@ -14,10 +14,10 @@ public class StaffMenu {
 		int choice;
 		final String menu = "\n--- Staff Menu ---\n" + "1) Add Customer (ID + Name)\n" + "2) List/Toggle Discounts\n"
 				+ "3) Create Discount\n" + "4) Add Product\n" + "5) Update Shipment Status\n" + "6) Reports (~15)"
-				+ "0) Back";
+				+ "\n0) Back\n"+"\nChoose: > ";
 
 		do {
-			System.out.println(menu);
+			System.out.print(menu);
 			choice = sc.nextInt();
 			switch (choice) {
 			case 1 -> addCustomer(sc, system);
@@ -26,7 +26,7 @@ public class StaffMenu {
 			case 4 -> addProduct(sc, system);
 			case 5 -> updateShipment(sc, system);
 			case 6 -> ReportService.runAllReports(system);
-			// case 0 ->
+			case 0 -> System.out.println();
 			default -> System.out.println("Invalid Choice!");
 			}
 		} while (choice != 0);
@@ -35,7 +35,7 @@ public class StaffMenu {
 
 	// This function first validates the name and id of the customer, then calls the
 	// method addCustomer from warehouse to create new instance of Customer
-	public static void addCustomer(Scanner sc, WarehouseSystem system) {
+	private static void addCustomer(Scanner sc, WarehouseSystem system) {
 		System.out.println("Customer ID: > ");
 		String id = sc.nextLine();
 		System.out.print("Customer Name: > ");
@@ -49,7 +49,7 @@ public class StaffMenu {
 
 	}
 
-	public static void listToggleDiscounts(Scanner sc, WarehouseSystem system) {
+	private static void listToggleDiscounts(Scanner sc, WarehouseSystem system) {
 		ArrayList<Discount> discounts = system.getDiscounts();
 		for(int i=0; i<discounts.size();i++){
 			Discount d = discounts.get(i);
@@ -75,7 +75,7 @@ public class StaffMenu {
 	            System.out.println("Error: Invalid number format.");}}
 	}
 
-	public static void createDiscount(Scanner sc, WarehouseSystem system) {
+	private static void createDiscount(Scanner sc, WarehouseSystem system) {
 		String type;
 		while (true) {
 			System.out.println("Type: 1) Fixed Amount 2) Percentage");
@@ -149,7 +149,7 @@ public class StaffMenu {
 		};
 	
 
-	public static void addProduct(Scanner sc, WarehouseSystem system) {
+	private static void addProduct(Scanner sc, WarehouseSystem system) {
 		String cat = "";
         while (true) {
             System.out.println("Category: 1) Book 2) Electronic 3) Grocery");
@@ -208,7 +208,7 @@ public class StaffMenu {
         }
 	}
 //This method shows all the instances of shipment in the arrayList shipments, then updates the shipment status based on the statusChoice of the user
-	public static void updateShipment(Scanner sc, WarehouseSystem system) {
+	private static void updateShipment(Scanner sc, WarehouseSystem system) {
 		ArrayList<Shipment> shipments=system.getShipments();
 		for(int i=0;i<shipments.size();i++) {
 			System.out.printf("%d) %s%n",i,shipments.get(i).basicInfo());

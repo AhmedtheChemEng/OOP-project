@@ -2,8 +2,9 @@ package warehouse;
 
 import java.util.*;
 import java.time.*;
+import java.io.*;
 
-abstract class Discount {
+abstract class Discount implements Serializable{
 	private String code;
 	private LocalDate startDate;
 	private LocalDate endDate;
