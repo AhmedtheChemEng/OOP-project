@@ -61,7 +61,7 @@ public abstract class Product {
 	}
 	
 	public String toString() {
-		return String.format("%s: %s (ID %s), stock %d, price QAR %.2f",getClass().getSimpleName(),name,id,stockQty,price);
+		return String.format("- %s: %s (ID %s), stock %d, price QAR %.2f",getClass().getSimpleName(),name,id,stockQty,price);
 	}
 
 }
