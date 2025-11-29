@@ -96,8 +96,6 @@ public class Order {
     }
     
     public String toString() {
-    	
-    	
     	return String.format("%8s| %8s| QAR %.2f", id,customer.getName(),total);
     }
     

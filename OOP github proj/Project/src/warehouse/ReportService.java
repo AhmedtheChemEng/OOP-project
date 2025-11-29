@@ -59,8 +59,8 @@ public class ReportService {
 				case 6 -> InventoryValuation(warehouse);
 				case 7 -> OrdersToday(warehouse);
 				case 8 -> SalesbyCustomer(warehouse);
-	//			case 9 -> (warehouse);
-	//			case 10 -> (warehouse);
+				case 9 -> ShipmentsbyStatus(warehouse);
+				case 10 -> ShipmentsnotyetDELIVERED(warehouse);
 	//			case 11 -> (warehouse);
 	//			case 12 -> (warehouse);
 	//			case 13 -> (warehouse);
@@ -161,15 +161,33 @@ public class ReportService {
 		
 		private static void ShipmentsbyStatus(WarehouseSystem warehouse) {
 			System.out.println("[9] Shipments by Status:");
-			if (warehouse.getOrders().isEmpty()) {System.out.println(" None.");return;}
-			ArrayList<Order> orders = new ArrayList<>();
-			ArrayList<Shipment> shipments = new ArrayList<>();
+			if (warehouse.getShipments().isEmpty()) {System.out.println(" None.");return;}
 			
-			for (int i=0; i<) {
-				
-				
-				System.out.printf("- Order %s | %8s| %9s | %.2f kg to %s");
+			for (Shipment s: warehouse.getShipments()) {
+				System.out.println("Order "+s);
 			}
+			
+			
+		}
+		
+		private static void ShipmentsnotyetDELIVERED(WarehouseSystem warehouse) {
+			System.out.println("[10] Shipments not yet DELIVERED:");
+			if (warehouse.getShipments().isEmpty()) {System.out.println(" None.");return;}
+			
+			for (Shipment s: warehouse.getShipments()) {
+				if (s.getStatus()!=ShipmentStatus.DELIVERED) {
+					System.out.println(s);}
+			}
+		}
+		
+		private static void TopSelling(WarehouseSystem warehouse) {
+			System.out.println("[11] Simple Top-Selling (counts)");
+			ArrayList<OrderItem> soldItems = new ArrayList<>();
+			for (Order o:warehouse.getOrders()) {
+				
+			}
+			
+			
 		}
 		
 //		private static void (WarehouseSystem warehouse) {}
