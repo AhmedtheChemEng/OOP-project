@@ -1,3 +1,4 @@
+package warehouse;
 import java.util.Scanner;
 
 public class CustomerMenu {
@@ -158,7 +159,7 @@ public class CustomerMenu {
                 Order order = new Order(orderId, customer, system.getToday(), cart.toOrderItems(), subtotal, discountAmount, shipping, total, discount);
                 system.addOrder(order);
 
-                Shipment shipment = new Shipment(orderId, customer, address, weight);
+                Shipment shipment = new Shipment(orderId, weight, customer, address, ShipmentStatus.CREATED);
                 system.addShipment(shipment);
                 System.out.println("Shipment: " + shipment.basicInfo());
 

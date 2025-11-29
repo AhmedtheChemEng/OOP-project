@@ -1,7 +1,7 @@
 package warehouse;
 
 public class CashPayment implements Payment {
-    private String currency;
+    private String currency="QAR";
     private double amount;
 
     public String getCurrency() {
@@ -20,8 +20,7 @@ public class CashPayment implements Payment {
         this.amount = amount;
     }
 
-    public CashPayment(String currency, double amount) {
-        this.currency = currency;
+    public CashPayment( double amount) {
         this.amount = amount;
     }
 
