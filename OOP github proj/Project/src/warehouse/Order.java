@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.io.Serializable;
 
 public class Order implements Serializable {
-    
+     
     private String id;
     private Customer customer;
     private LocalDate date;
@@ -17,20 +17,17 @@ public class Order implements Serializable {
     private double shippingFee;
     private double total;
     private Discount appliedDiscount;
+    private Payment payment;
 
-    public Order(String id, Customer customer, LocalDate date, ArrayList<OrderItem> items, double subtotal, double discountAmount, double shippingFee, double total, Discount appliedDiscount) {
-        this.id = id;
-        this.customer = customer;
-        this.date = date;
-        this.items = items;
-        this.subtotal = subtotal;
-        this.discountAmount = discountAmount;
-        this.shippingFee = shippingFee;
-        this.total = total;
-        this.appliedDiscount = appliedDiscount;
-    }
 
-    public String getId() {
+   
+
+	public Order(String orderId, Customer customer2, LocalDate today, ArrayList<OrderItem> orderItems, double subtotal2,
+			double discountAmount2, double shipping, double total2, Discount discount, Payment payment2) {
+		
+	}
+
+	public String getId() {
         return id;
     }
 
