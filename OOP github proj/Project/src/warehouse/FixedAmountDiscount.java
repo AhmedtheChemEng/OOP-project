@@ -4,7 +4,7 @@
  * Extends the abstract Discount class and provides implementation
  * for calculating and displaying discount details.
  *
- * @author Ali
+ * @author Ali Al-Marri
  * @version 3.0
  * @since 2025-10-20
  */
