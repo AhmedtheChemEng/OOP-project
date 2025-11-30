@@ -1,3 +1,13 @@
+/**
+ * Provides utility methods for displaying product lists in categorized form.
+ * Prints all products grouped by their type: Electronics, Book, or Grocery.
+ * Used in customer menus to help users browse available products easily.
+ *
+ * @author Ahmed Seboui
+ * @version 2.0
+ * @since 2025-10-20
+ */
+
 package warehouse;
 
 import java.util.*;
