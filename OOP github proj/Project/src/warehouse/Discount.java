@@ -1,3 +1,15 @@
+/**
+ * An abstract base class representing a discount in the warehouse system.
+ * Each discount has a unique code, start and end dates, and an active status.
+ * Subclasses must define how the discount amount is calculated and described.
+ *
+ * Includes a static method {@code overlaps()} to check if two discount periods overlap.
+ *
+ * @author Ali Al-Marri
+ * @version 2.0
+ * @since 2025-10-20
+ */
+
 package warehouse;
 
 import java.util.*;
