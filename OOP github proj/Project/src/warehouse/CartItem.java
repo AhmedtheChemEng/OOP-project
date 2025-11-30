@@ -1,3 +1,13 @@
+/**
+ * Represents an item inside a customer's shopping cart.
+ * Each CartItem contains a product reference, its quantity,
+ * and methods to calculate subtotal price and total weight.
+ *
+ * @author Fahad Ali
+ * @version 3.0
+ * @since 2025-10-20
+ */
+
 package warehouse;
 
 public class CartItem {
