@@ -1,3 +1,21 @@
+/**
+ * Handles all customer interactions within the warehouse system.
+ * Provides a console-based menu for customers to browse products,
+ * manage their shopping cart, checkout with payment, and create shipments.
+ *
+ * Features include:
+ * - Listing products by category
+ * - Adding/removing items from the cart
+ * - Viewing cart contents
+ * - Applying discounts and calculating totals
+ * - Choosing between card or cash payment
+ * - Generating orders and shipments automatically
+ *
+ * @author Fahad Ali
+ * @version 3.0
+ * @since 2025-10-20
+ */
+
 package warehouse;
 import java.util.Scanner;
 
