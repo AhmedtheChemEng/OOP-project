@@ -1,3 +1,13 @@
+/**
+ * Represents an individual item within a customer's order.
+ * Contains product details, quantity purchased, and unit price in QAR.
+ * Provides a method to calculate the total line cost for the item.
+ *
+ * @author Fahad Ali
+ * @version 3.0
+ * @since 2025-10-20
+ */
+
 package warehouse;
 import java.io.*;
 public class OrderItem implements Serializable{
