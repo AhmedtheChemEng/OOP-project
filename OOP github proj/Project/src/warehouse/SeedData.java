@@ -1,3 +1,17 @@
+/**
+ * Loads initial sample data into the warehouse system.
+ * Populates the system with predefined customers, products,
+ * and discounts to facilitate testing and demonstration.
+ *
+ * This includes examples from multiple categories:
+ * - Electronics, Books, and Groceries
+ * - Fixed and percentage-based discounts
+ *
+ * @author Fahad Ali
+ * @version 3.0
+ * @since 2025-10-20
+ */
+
 package warehouse;
 import java.time.*;
 
