@@ -1,3 +1,22 @@
+/**
+ * Provides a comprehensive reporting service for the warehouse system.
+ * Allows staff to generate and view various operational reports such as:
+ * - Discounts (all, active, usage, overlaps)
+ * - Product and inventory statistics
+ * - Orders, sales, and revenue summaries
+ * - Shipments and their statuses
+ * - Payment method summaries and top-selling products
+ *
+ * Contributions:
+ * - General implementation: Ali Al-Marri & Ahmed Seboui
+ * - Reports 12 & 13 (Total Revenue, Payments Summary): Fahad Ali
+ * - Report 15 (Active Discount Overlaps): Ahmed Seboui
+ *
+ * @author Ali Al-Marri, Ahmed Seboui, Fahad Ali
+ * @version 3.0
+ * @since 2025-10-20
+ */
+
 package warehouse;
 
 import java.time.LocalDate;
