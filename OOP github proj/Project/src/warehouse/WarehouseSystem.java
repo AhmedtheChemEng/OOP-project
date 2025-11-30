@@ -1,3 +1,20 @@
+/**
+ * The core class of the warehouse management system.
+ * Manages and stores all major entities including customers, products, discounts,
+ * orders, shipments, and rate tables. Provides methods for adding, searching,
+ * and maintaining relationships between these entities.
+ *
+ * Key features include:
+ * - Managing customers, products, and orders
+ * - Handling discounts and ensuring no overlapping active periods
+ * - Tracking shipments and shipment statuses
+ * - Calculating applicable discounts based on dates
+ *
+ * @author Ali Al-Marri
+ * @version 3.0
+ * @since 2025-10-20
+ */
+
 package warehouse;
 
 import java.io.Serializable;
