@@ -1,3 +1,15 @@
+/**
+ * An abstract base class representing a product in the warehouse system.
+ * Stores common product attributes such as ID, name, price, weight, and stock quantity.
+ * Subclasses must define the product category (e.g., Electronics, Grocery, Book).
+ *
+ * Includes validation for stock values and provides formatted output methods.
+ *
+ * @author Ahmed Seboui
+ * @version 2.0
+ * @since 2025-10-20
+ */
+
 package warehouse;
 
 import java.util.InputMismatchException;
@@ -67,3 +79,4 @@ public abstract class Product implements Serializable{
 	}
 
 }
+
