@@ -1,3 +1,14 @@
+/**
+ * Represents a percentage-based discount in the warehouse system.
+ * Calculates the discount amount as a percentage of the order subtotal.
+ * Extends the abstract Discount class and provides implementation
+ * for calculating and describing the discount details.
+ *
+ * @author Ali Al-Marri
+ * @version 3.0
+ * @since 2025-10-20
+ */
+
 package warehouse;
 
 import java.util.*;
