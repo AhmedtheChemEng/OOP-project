@@ -1,3 +1,14 @@
+/**
+ * The main application class for the Single-Warehouse System.
+ * It initializes data, handles loading and saving operations,
+ * and provides access to both the Staff and Customer menus.
+ *
+ * @author Ahmed Seboui
+ * @version 2.0
+ * @since 2025-10-20
+ */
+
+
 package warehouse;
 
 import java.time.*;
