@@ -97,7 +97,7 @@ public class ReportService {
 			}
 						
 			if (none) {System.out.println(" None.");}
-			// incomplete <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+			
 		}
 		
 		private static void OutofStock(WarehouseSystem warehouse) {

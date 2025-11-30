@@ -10,14 +10,14 @@ public class App {
 	public static void main(String[] args) {
 		WarehouseSystem w1 = new WarehouseSystem();
 		Scanner kb = new Scanner(System.in);
-		
-//		SeedData.load(w1);
+		//---------
+		try {
 		loadData(w1,"WarehouseData");
-		
-		System.out.println(w1.getOrders());
-		System.out.println(w1.getShipments());
-
-		
+		}
+		catch(IOException ioe) {
+			SeedData.load(w1);
+		}
+		//---------
 		MainMenu(kb,w1);
 		
 	}
@@ -79,7 +79,7 @@ public class App {
 		}
 	}
 
-	public static void loadData(WarehouseSystem sys, String filename) {
+	public static void loadData(WarehouseSystem sys, String filename) throws IOException {
 		ObjectInputStream in = null;
 
 		try {
@@ -100,7 +100,7 @@ public class App {
 			try {
 				if (in != null)
 					in.close();
-			} catch (IOException ignored) {
+			} catch (IOException ignored) { throw new IOException();
 			}
 		}
 
