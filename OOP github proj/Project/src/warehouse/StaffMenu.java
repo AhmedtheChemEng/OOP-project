@@ -1,3 +1,20 @@
+/**
+ * Provides the staff interface and management functions for the warehouse system.
+ * Allows staff members to perform administrative operations such as:
+ * - Adding new customers
+ * - Managing (listing, toggling, or creating) discounts
+ * - Adding new products
+ * - Updating shipment statuses
+ * - Accessing detailed system reports
+ *
+ * This class handles user input, validation, and calls the appropriate
+ * methods from {@link WarehouseSystem} and {@link ReportService}.
+ *
+ * @author Ahmed Seboui
+ * @version 2.0
+ * @since 2025-10-20
+ */
+
 package warehouse;
 
 import java.util.*;
