@@ -1,3 +1,16 @@
+/**
+ * Represents a shipment record in the warehouse system.
+ * Contains details such as the order ID, total weight, customer, 
+ * delivery address, and current shipment status.
+ *
+ * Provides methods to retrieve and modify shipment data,
+ * as well as to generate formatted summaries of shipment information.
+ *
+ * @author Ahmed Seboui
+ * @version 2.0
+ * @since 2025-10-20
+ */
+
 package warehouse;
 import java.time.LocalDate;
 import java.io.*;
