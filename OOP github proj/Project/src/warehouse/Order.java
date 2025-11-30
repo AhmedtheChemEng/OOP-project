@@ -1,3 +1,15 @@
+/**
+ * Represents a customer's order within the warehouse system.
+ * Stores details such as order ID, customer information, ordered items,
+ * payment method, subtotal, discounts, shipping fee, and total cost.
+ *
+ * Each order may include a discount and is linked to a specific payment type.
+ *
+ * @author Fahad Ali
+ * @version 3.0
+ * @since 2025-10-20
+ */
+
 package warehouse;
 
 import java.time.LocalDate;
