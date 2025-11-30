@@ -1,3 +1,13 @@
+/**
+ * Represents a card-based payment in the warehouse system.
+ * Stores details such as cardholder name, masked card number, amount, and currency.
+ * Implements the Payment interface to provide standardized payment behavior.
+ *
+ * @author Fahad Ali
+ * @version 3.0
+ * @since 2025-10-20
+ */
+
 package warehouse;
 
 public class CardPayment implements Payment {
