@@ -1,3 +1,15 @@
+/**
+ * Represents a customer's shopping cart in the warehouse system.
+ * Manages cart items, quantities, and provides methods to calculate
+ * subtotal, total weight, and convert cart items into order items.
+ *
+ * Also includes utilities to add, remove, print, and clear cart contents.
+ *
+ * @author Fahad Ali
+ * @version 3.0
+ * @since 2025-10-20
+ */
+
 package warehouse;
 import java.util.*;
 
