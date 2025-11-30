@@ -60,12 +60,7 @@ public class CardPayment implements Payment {
 
     @Override
     public String summary() {
-        return "CardPayment{" +
-                "currency='" + currency + '\'' +
-                ", cardHolder='" + cardHolder + '\'' +
-                ", maskedNumber='" + maskedNumber + '\'' +
-                ", amount=" + amount +
-                '}';
+        return String.format("Card QAR %.2f (%s, %s)", amount,cardHolder,maskedNumber);
     }
 }
 

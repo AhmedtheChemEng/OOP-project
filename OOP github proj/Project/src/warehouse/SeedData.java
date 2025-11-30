@@ -4,11 +4,11 @@ import java.time.*;
 public class SeedData {
 	public static void load(WarehouseSystem s) {
 
-        s.addCustomer(new Customer("C001", "Ahmad"));
-        s.addCustomer(new Customer("C002", "Mohammad"));
-        s.addCustomer(new Customer("C003", "Nasser"));
-        s.addCustomer(new Customer("C004", "Aisha"));
-        s.addCustomer(new Customer("C005", "Fatimah"));
+        s.addCustomer(new Customer("Ahmad","C001"));
+        s.addCustomer(new Customer( "Mohammad","C002"));
+        s.addCustomer(new Customer("Nasser","C003" ));
+        s.addCustomer(new Customer( "Aisha","C004"));
+        s.addCustomer(new Customer( "Fatimah","C005"));
 
         s.addProduct(new ElectronicProduct("E1", "Electronic 1", 205.00, 2.1, 8));
         s.addProduct(new ElectronicProduct("E2", "Electronic 2", 210.00, 2.2, 10));

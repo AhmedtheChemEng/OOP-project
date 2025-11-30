@@ -38,10 +38,7 @@ public class CashPayment implements Payment {
 
     @Override
     public String summary() {
-        return "CashPayment{" +
-                "currency='" + currency + '\'' +
-                ", amount=" + amount +
-                '}';
+        return String.format("Cash QAR %.2f", amount);
     }
 }
 

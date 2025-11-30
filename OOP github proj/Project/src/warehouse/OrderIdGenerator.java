@@ -1,6 +1,6 @@
 package warehouse;
 public class OrderIdGenerator {
-    private static int counter=0;
+    private static int counter=1000;
     public static String nextId(){
         counter++;
 

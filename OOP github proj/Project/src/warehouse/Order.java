@@ -18,17 +18,23 @@ public class Order implements Serializable {
     private double total;
     private Discount appliedDiscount;
     private Payment payment;
-
-
-   
-
-	public Order(String orderId, Customer customer2, LocalDate today, ArrayList<OrderItem> orderItems, double subtotal2,
-			double discountAmount2, double shipping, double total2, Discount discount, Payment payment2) {
-		
+	
+	public Order(String id, Customer customer, LocalDate date, ArrayList<OrderItem> items, double subtotal,
+			double discountAmount, double shippingFee, double total, Discount appliedDiscount, Payment payment) {
+		super();
+		this.id = id;
+		this.customer = customer;
+		this.date = date;
+		this.items = items;
+		this.subtotal = subtotal;
+		this.discountAmount = discountAmount;
+		this.shippingFee = shippingFee;
+		this.total = total;
+		this.appliedDiscount = appliedDiscount;
+		this.payment = payment;
 	}
 
-	
-	
+
 	public Payment getPayment() {
 		return payment;
 	}
@@ -70,6 +76,6 @@ public class Order implements Serializable {
         return appliedDiscount;
     }
     public String toString() {
-    	return String.format("%8s| %8s| QAR %.2f", id,customer.getName(),total);
+    	return String.format("- %-8s| %-8s| QAR %.2f", id,customer.getName(),total);
     }
 }

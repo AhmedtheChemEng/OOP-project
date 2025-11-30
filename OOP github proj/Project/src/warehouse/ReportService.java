@@ -135,7 +135,7 @@ public class ReportService {
 			System.out.println("[8] Sales by Customer:");
 			if (warehouse.getOrders().isEmpty()) {System.out.println(" None.");return;}
 			for (Order o:warehouse.getOrders()) {
-				System.out.printf(" - %9s QAR %.2f",o.getCustomer().getName()+":",o.getTotal());
+				System.out.printf(" - %-9s QAR %.2f",o.getCustomer().getName()+":",o.getTotal());
 			}
 		}
 		
@@ -153,13 +153,15 @@ public class ReportService {
 		private static void ShipmentsnotyetDELIVERED(WarehouseSystem warehouse) {
 			System.out.println("[10] Shipments not yet DELIVERED:");
 			if (warehouse.getShipments().isEmpty()) {System.out.println(" None.");return;}
-			
+			boolean none = true;
 			for (Shipment s: warehouse.getShipments()) {
 				if (s.getStatus()!=ShipmentStatus.DELIVERED) {
+					none = false;
 					System.out.println(s);}
 			}
+			if (none) {System.out.println(" None.");}
 		}
-		
+		//======================================
 		private static void TopSelling(WarehouseSystem warehouse) {
 			System.out.println("[11] Simple Top-Selling (counts):");
 			ArrayList<OrderItem> soldItems = new ArrayList<>();
@@ -173,20 +175,19 @@ public class ReportService {
 							found = true;
 							break;
 						}
-					
 					}
 					if (!found) {
 						soldItems.add(oi);
 					}	
 				}
 			}
-			
+			soldItems.sort((oi1,oi2) -> Integer.compare(oi2.getQuantity(), oi1.getQuantity()));// lambda function to sort the OrderItem ArrayList in descending quantity order
 			for (OrderItem oi:soldItems) {
 				System.out.printf(" - %s (%s): %d units\n",oi.getProduct().getName(),oi.getProduct().getId(),oi.getQuantity());
 			}
 			if (soldItems.isEmpty()) {System.out.println(" None.");return;}
 		}
-		
+		//======================================
 		private static void TotalRevenue(WarehouseSystem warehouse) {
 			double totalRevenue = 0;
 			for (Order o : warehouse.getOrders()) totalRevenue += o.getTotal();
@@ -201,24 +202,34 @@ public class ReportService {
 
 			ArrayList<String> cardCustomers = new ArrayList<>();
 			ArrayList<String> cashCustomers = new ArrayList<>();
-
+			
 			for (Order o : warehouse.getOrders()) {
 			    Payment p = o.getPayment();
 			    Customer c = o.getCustomer();
 
 			    if (p instanceof CardPayment) {
 			        cardCustomers.add(c.getName());
+			        
 			    } else if (p instanceof CashPayment) {
 			        cashCustomers.add(c.getName());
+			        
 			    }
 			}
 			double totalRevenue = 0;
 			for (Order o : warehouse.getOrders()) totalRevenue += o.getTotal();
 
+			if (cardCustomers.isEmpty()) {
+				cardCustomers.add("None");
+			}
+			if (cashCustomers.isEmpty()) {
+				cashCustomers.add("None");
+			}
+			
 			System.out.printf("Collected: QAR %.2f%n",totalRevenue);
 			System.out.printf("(mix: card for %s; cash for %s)%n",
 			        String.join(", ", cardCustomers),
 			        String.join(", ", cashCustomers));
+			
 		}
 		
 		private static void DiscountUsage(WarehouseSystem warehouse) {
@@ -246,13 +257,13 @@ public class ReportService {
 		}
 		
 		private static void ActiveDiscountOverlaps(WarehouseSystem warehouse) {
-			System.out.printf("[15] Active Discount Overlaps (today %s)",warehouse.getToday());
+			System.out.printf("[15] Active Discount Overlaps (today %s)\n",warehouse.getToday());
 			Discount ActiveDiscount=warehouse.findApplicableDiscount(warehouse.getToday());
 			
 			if (ActiveDiscount!=null) {
 				for(Discount d:warehouse.getDiscounts() ) {
 					if(d.overlaps(ActiveDiscount, d)) {
-						System.out.println(d.getDetails());
+						System.out.println(" - "+d.getDetails());
 					};
 					
 				}

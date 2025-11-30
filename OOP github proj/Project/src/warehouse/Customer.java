@@ -28,4 +28,8 @@ public class Customer implements Serializable{
 		this.name = name;
 	}
 	
+	public String toString() {
+		return String.format("%s (%s)", id,name);
+	}
+	
 }

@@ -88,6 +88,10 @@ public class Shipment implements Serializable{
 		this.status = status;
 	}
 	
+	public String toString() {
+		return basicInfo();
+	}
+	
 	
 
 	

@@ -18,7 +18,7 @@ public class StaffMenu {
 
 		do {
 			System.out.print(menu);
-			choice = sc.nextInt();
+			choice = sc.nextInt();sc.nextLine();// nextline is use to remove '\n'
 			switch (choice) {
 			case 1 -> addCustomer(sc, system);
 			case 2 -> listToggleDiscounts(sc, system);
@@ -36,7 +36,7 @@ public class StaffMenu {
 	// This function first validates the name and id of the customer, then calls the
 	// method addCustomer from warehouse to create new instance of Customer
 	private static void addCustomer(Scanner sc, WarehouseSystem system) {
-		System.out.println("Customer ID: > ");
+		System.out.print("Customer ID: > ");
 		String id = sc.nextLine();
 		System.out.print("Customer Name: > ");
 		String name = sc.nextLine();
@@ -53,9 +53,9 @@ public class StaffMenu {
 		ArrayList<Discount> discounts = system.getDiscounts();
 		for(int i=0; i<discounts.size();i++){
 			Discount d = discounts.get(i);
-			System.out.printf("%d) %s" , i, d);
+			System.out.printf("%d) %s\n" , i, d);
 		}
-		System.out.print("Enter index to toggle (or blank to skip): > ");
+		System.out.print("\nEnter index to toggle (or blank to skip): > ");
 	    String idxStr = sc.nextLine();
 	    if (!idxStr.isEmpty()) 	{
 	        try {
@@ -102,7 +102,7 @@ public class StaffMenu {
 	        while (end == null) {
 	            System.out.print("End date (YYYY-MM-DD): > ");
 	            try {
-	                LocalDate d = LocalDate.parse(sc.nextLine());
+	                end = LocalDate.parse(sc.nextLine());
 	            } catch (DateTimeParseException e) {
 	                System.out.println("Error: Invalid date format. Use YYYY-MM-DD.");
 	            }
@@ -142,8 +142,12 @@ public class StaffMenu {
 	        }
 
 	        if (d != null) {
-	            d.setActive(active);
+	       
 	            system.addDiscount(d);
+	            if (active) {
+	            	system.setDiscountActive(d);
+	            }
+	            
 	            System.out.println("Discount created. Overlap rule applied if Active.");
 	        }
 		};
@@ -213,7 +217,7 @@ public class StaffMenu {
 		for(int i=0;i<shipments.size();i++) {
 			System.out.printf("%d) %s%n",i,shipments.get(i).basicInfo());
 			}
-		System.out.println("Choose shipment index: >");
+		System.out.print("Choose shipment index: >");
 		int index= sc.nextInt();
 		Shipment s= shipments.get(index);
 		System.out.println(
@@ -227,7 +231,7 @@ public class StaffMenu {
         System.out.print("New status index: >");
         int statusChoice = sc.nextInt();
         s.setStatus(ShipmentStatus.values()[statusChoice]);
-        System.out.printf("Updated: %s",s.basicInfo());
+        System.out.printf("Updated: %s\n",s.basicInfo());
         
 	} 
 		

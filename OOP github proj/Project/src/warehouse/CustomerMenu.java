@@ -7,7 +7,7 @@ public class CustomerMenu {
         for (Customer c : system.getCustomers()) {
             System.out.printf("- %s (%s)%n", c.getId(), c.getName());
         }
-        System.out.print("Enter Customer ID to login: > ");
+        System.out.print("\nEnter Customer ID to login: > ");
         String id = sc.nextLine();
         Customer customer = system.findCustomerById(id);
 
@@ -19,7 +19,7 @@ public class CustomerMenu {
         ShoppingCart cart = new ShoppingCart();
 
         while (true) {
-            System.out.printf("--- Customer Menu (ID: %s, %s) ---%n", customer.getId(), customer.getName());
+            System.out.printf("\n--- Customer Menu (ID: %s, %s) ---%n", customer.getId(), customer.getName());
             System.out.println("1) List Products (by Category)");
             System.out.println("2) Add to Cart");
             System.out.println("3) Remove from Cart");
@@ -31,6 +31,8 @@ public class CustomerMenu {
 
             if (choice.equals("1")) {
                 ProductListView.printCategorized(system.getProducts());
+                
+                
             } else if (choice.equals("2")) {
                 System.out.print("Enter Product ID: > ");
                 String pid = sc.nextLine();
@@ -50,11 +52,15 @@ public class CustomerMenu {
                             System.out.println("Error: Invalid integer.");
                         }
                     }
+//                    p.setStock(p.getStock()-qty);
                     cart.addItem(p, qty);
                     System.out.println("Added to cart.");
                 } else {
                     System.out.println("Product not found.");
                 }
+                
+                
+                
             } else if (choice.equals("3")) {
                 if (cart.isEmpty()) {
                     System.out.println("Cart is empty.");
@@ -73,8 +79,12 @@ public class CustomerMenu {
                 } catch (NumberFormatException e) {
                     System.out.println("Error: Invalid index.");
                 }
+                
+                
             } else if (choice.equals("4")) {
                 cart.print();
+                
+                
             } else if (choice.equals("5")) {
                 if (cart.isEmpty()) {
                     System.out.println("Cart is empty.");
@@ -143,7 +153,7 @@ public class CustomerMenu {
                     payment = new CashPayment(total);
                 }
 
-                System.out.println("--- Checkout Summary ---");
+                System.out.println("\n--- Checkout Summary ---");
                 cart.print();
                 
                 if (discount != null) {

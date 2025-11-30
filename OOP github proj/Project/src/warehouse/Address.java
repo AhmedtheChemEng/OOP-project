@@ -39,4 +39,7 @@ public class Address implements Serializable{
     public String toSingleLine() {
         return street + " , " + city + " , " + country;
     }
+    public String toString() {
+    	return toSingleLine();
+    }
 }

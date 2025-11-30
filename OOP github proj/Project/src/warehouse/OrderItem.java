@@ -39,5 +39,5 @@ public class OrderItem implements Serializable{
         return getUnitPriceQar()*getQuantity();
 
     }
-
+    
 }

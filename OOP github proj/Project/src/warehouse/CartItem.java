@@ -35,10 +35,7 @@ public class CartItem {
 
     
     public String info() {
-        return "CartItem{" +
-                "product=" + product +
-                ", quantity=" + quantity +
-                '}';
+        return String.format("%s x%d | QAR %.2f", product.getId(),quantity,lineSubTotal());
     }
 
 }
