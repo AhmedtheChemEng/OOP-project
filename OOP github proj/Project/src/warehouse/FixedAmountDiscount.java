@@ -1,3 +1,14 @@
+/**
+ * Represents a fixed amount discount in the warehouse system.
+ * This discount subtracts a constant QAR value from the subtotal.
+ * Extends the abstract Discount class and provides implementation
+ * for calculating and displaying discount details.
+ *
+ * @author Ali
+ * @version 3.0
+ * @since 2025-10-20
+ */
+
 package warehouse;
 
 import java.time.LocalDate;
