@@ -1,3 +1,11 @@
+/**
+ * Represents a physical address with street, city, and country information.
+ * Used to store and display location details for customers or warehouses.
+ *
+ * @author Fahad Ali
+ * @version 3.0
+ * @since 2025-10-20
+ */
 package warehouse;
 import java.io.*;
 
