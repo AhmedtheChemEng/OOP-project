@@ -1,3 +1,12 @@
+/**
+ * Represents a customer in the warehouse system.
+ * Each customer has a unique ID and name used for identification and records.
+ *
+ * @author Ahmed Seboui
+ * @version 2.0
+ * @since 2025-10-20
+ */
+
 package warehouse;
 import java.io.*;
 
