@@ -16,7 +16,6 @@
  * @version 3.0
  * @since 2025-10-20
  */
-
 package warehouse;
 
 import java.time.LocalDate;
@@ -154,7 +153,7 @@ public class ReportService {
 			System.out.println("[8] Sales by Customer:");
 			if (warehouse.getOrders().isEmpty()) {System.out.println(" None.");return;}
 			for (Order o:warehouse.getOrders()) {
-				System.out.printf(" - %-9s QAR %.2f",o.getCustomer().getName()+":",o.getTotal());
+				System.out.printf(" - %-9s QAR %.2f\n",o.getCustomer().getName()+":",o.getTotal());
 			}
 		}
 		
@@ -258,6 +257,7 @@ public class ReportService {
 			ArrayList<Double> DAmm = new ArrayList<>();
 			
 			for(Order o:warehouse.getOrders()) {
+				if (o.getAppliedDiscount()==null) {continue;} // if the current order doesn't have a discount then skip it
 				if (UsedDiscounts.contains(o.getAppliedDiscount())){
 					int index = UsedDiscounts.indexOf(o.getAppliedDiscount());
 					UDnum.set(index, UDnum.get(index)+1);
