@@ -1,3 +1,12 @@
+/**
+ * Represents a cash payment transaction in the warehouse system.
+ * Stores the payment amount and currency, and provides a formatted summary.
+ *
+ * @author Fahad Ali
+ * @version 3.0
+ * @since 2025-10-20
+ */
+
 package warehouse;
 
 public class CashPayment implements Payment {
